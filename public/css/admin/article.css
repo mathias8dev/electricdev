@@ -1,0 +1,53 @@
+#content {
+    overflow-y: scroll;
+}
+
+#content h3 {
+    text-align: center;
+    margin: 0 1rem 2rem;
+}
+#content .form-control {
+    width: 100%;
+    margin: 0 1rem 2rem 0;
+}
+#content .form-control input {
+    width: 100%;
+    margin-top: 0.8rem;
+    background-color: #c4c4c4;
+    padding-left: 0.5rem;
+    height: 40px;
+}
+
+#content .form-control input[type="file"] {
+    width: auto;
+    border-bottom: 0;
+    background-color: unset;
+}
+
+#content form .form-control select {
+    width: 200px;
+    background-color: #fefefe;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.2rem;
+    margin-top: 1rem;
+}
+
+#content form .form-control textarea {
+    width: 100%;
+    height: 600px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+#content form .form-action input {
+    padding: 0.8rem;
+    border-radius: 0.2rem;
+    width: 120px;
+    background-color: rgb(80, 80, 247);
+    color: white;
+}
+
+#content form .form-action input:focus {
+    transform: scale(0.98);
+}

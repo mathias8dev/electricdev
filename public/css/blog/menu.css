@@ -1,0 +1,68 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 0;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: auto;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+header > h1 {
+    cursor: pointer;
+}
+
+header.shadow-display {
+    box-shadow: 2px 2px 2px rgb(199, 199, 199);
+    background-color: white;
+}
+
+header h1.blog-name {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+header nav > ul {
+    display: flex;
+}
+
+header nav li ul {
+    display: none;
+}
+
+header nav li.submenu-container:hover ul {
+    display: block;
+    position: absolute;
+    background-color: white;
+    padding: 1rem;
+    line-height: 1.5rem;
+    z-index: 2;
+    box-shadow: 0 3px 3px rgb(160, 160, 160);
+}
+
+header nav ul li {
+    list-style: none;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+header nav ul li:last-child {
+    margin-right: 0;
+}
+
+header nav ul li a {
+    color: hsl(0, 0%, 29%);
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+header nav ul li a:hover {
+    color: #8d8d8d;
+}

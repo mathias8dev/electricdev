@@ -1,0 +1,44 @@
+.articles {
+    width: 80%;
+
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 2vw;
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+}
+
+.articles .article-wrap * {
+    cursor: pointer;
+}
+
+.articles .article-wrap {
+    width: 100%;
+    margin-top: 7rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.articles .article-wrap h1 {
+    font-size: 1.2rem;
+    color: #444444;
+    margin-bottom: 1rem;
+    margin-top: 0.7rem;
+}
+
+.articles .article-wrap .read-more a:hover {
+    color: #777676;
+}
+
+.articles .article-wrap .illustration {
+    width: 100%;
+    height: calc(80vw / 3 - 7rem);
+}
+
+.articles .article-wrap .illustration img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}

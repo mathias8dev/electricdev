@@ -1,0 +1,115 @@
+#content {
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#content div.floating-button {
+    position: fixed;
+    bottom: 10px;
+    right: 24px;
+    box-shadow: 0 0 10px rgb(143, 143, 143);
+    z-index: 4;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(23, 139, 139);
+    color: white;
+
+    cursor: pointer;
+}
+
+#content div.floating-button:active {
+    transform: scale(0.98);
+}
+
+#content .categories {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#content .categories .category {
+    width: 220px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(23, 139, 139, 0.089);
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#content .categories .category:hover {
+    color: rgb(107, 107, 107);
+}
+
+#content .categories .category:nth-of-type(even) {
+    margin: 0 10px;
+}
+
+#content form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    width: 100%;
+    align-items: center;
+}
+
+#content form input {
+    /* background-color: #e2e2e2; */
+    /* border-radius: 5px; */
+    height: 42px;
+    /* border-bottom: 1px solid rgb(23, 139, 139); */
+    padding-left: 10px;
+    margin-top: 8px;
+    width: 400px;
+    cursor: default;
+}
+
+#content form .form-control input[name="illustration"] {
+    width: 376px;
+}
+
+#content form .form-action input[type="submit"] {
+    padding: 0.7rem;
+    margin-top: 20px;
+    color: white;
+    height: min-content;
+    border-radius: 5px;
+    background-color: rgb(18, 163, 163);
+}
+
+#content form .fa-solid.fa-camera {
+    font-size: 24px;
+    color: rgb(23, 139, 139);
+}
+
+#content form .form-control > div {
+    border-bottom: 1px solid rgb(23, 139, 139);
+}
+
+#content form label {
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+#content form .choosen-image img {
+    width: 400px;
+    height: 200px;
+    display: none;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: optimizeQuality;
+    background-color: #c26262;
+}
+
+#content form .form-control:nth-child(2) {
+    /* margin: 20px 0; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
