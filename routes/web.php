@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
 
 Route::get('/', function () {
     // Get all articles
@@ -25,7 +26,7 @@ Route::get('/', function () {
     $articles = Article::all()->sortByDesc('created_at');
     Log::error("Logging some data " . $articles);
     return view('blog.home', ['articles' => $articles]);
-})->name('home');
+})->name('blog.home');
 
 Route::get('/categorie/electronique', function () {
 
@@ -34,7 +35,7 @@ Route::get('/categorie/electronique', function () {
     // Get the list of all articles
     // Return the articles
     return view('blog.category', ['pageTitle' => "Articles de la catégorie électronique", 'articles' => $articles]);
-})->name('category.electronic');
+})->name('blog.category.electronic');
 
 Route::get('/categorie/informatique', function () {
 
@@ -44,7 +45,7 @@ Route::get('/categorie/informatique', function () {
     $articles = Article::where('category_id', 2)->orderByDesc('created_at')->get();
 
     return view('blog.category', ['pageTitle' => "Articles de la catégorie informatique", 'articles' => $articles]);
-})->name('category.computer_science');
+})->name('blog.category.computer_science');
 
 Route::get('/categorie/programmation', function () {
 
@@ -54,7 +55,7 @@ Route::get('/categorie/programmation', function () {
     $articles = Article::where('category_id', 3)->orderByDesc('created_at')->get();
 
     return view('blog.category', ['pageTitle' => "Articles de la catégorie programmation", 'articles' => $articles]);
-})->name('category.programming');
+})->name('blog.category.programming');
 
 Route::get('/categorie/{category}/{article:slug}', function ($_category, $_article) {
 
@@ -73,8 +74,8 @@ Route::get('/categorie/{category}/{article:slug}', function ($_category, $_artic
     // Get the article
     // Return the article
     return view('blog.article', ['pageTitle' => "ElectricDev | Article | " . $article->title, 'article' => $article]);
-})->name('article.show');
+})->name('blog.article.show');
 
 Route::get('/apropos', function () {
     return view('blog.about');
-})->name('about');
+})->name('blog.about');

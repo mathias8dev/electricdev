@@ -9,49 +9,50 @@
 
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/menu.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @yield('headers')
 
 </head>
 
 <body>
-    <aside>
 
-        <div class="current-user">
-            <img src="https://www.pexels.com/photo/11574219/download/">
+<nav>
+        <h3><i class="fa-solid fa-laptop"></i>
+            <li><a href="#">ElectricDev</a></li>
+        </h3>
 
-            <h4>KALIPE Kossi Mathias</h4>
-            <button>Se déconnecter</button>
-        </div>
+        <!-- 
+            The menu is like that
+            Home
+            Users
+                New
+                Liste
+            ARticles
+                New
+                Liste
+            Categories
+                New
+                Liste
+            Logout
 
-        <nav>
-            <ul>
-                <li class="active">
-                    <i class="fa-solid fa-home"></i><a href="">Dashboard</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-book"></i><a href="">Categories</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-book-open"></i><a href="">Articles</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-gear"></i><a href="">Paramètres</a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+         -->
+        <ul>
+            <li class="active"><a href="{{ route('blog.home') }}"><i class="fas fa-home"></i><span>Accueil</span></a></li>
+            <li><a href="{{ route('admin.users') }}"><i class="fas fa-user"></i><span>Utilisateurs</span></a></li>
+            <li><a href="/pages/new/categories.html"><i class="fa-solid fa-layer-group"></i><span>Catégories</span></a>
+            </li>
+            <li><a href="/pages/new/articles.html"><i class="fa-solid fa-newspaper"></i><span>Articles</span></a></li>
+            <li><a href="/pages/new/logout.html"><i
+                        class="fa-solid fa-right-from-bracket"></i><span>Déconnexion</span></a></li>
+        </ul>
+    </nav>
 
     <div id="content">
         @yield('content')
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
-        integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="{{ asset('js/admin/home.js') }}"></script>
 </body>
 

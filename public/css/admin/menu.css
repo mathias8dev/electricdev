@@ -1,101 +1,13 @@
 body {
     display: flex;
-    width: 100vw;
-    max-height: 100vh;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Stylisation du menu du dashboard */
-body aside {
-    width: 230px;
-    min-width: 230px;
-    height: 100%;
-    box-shadow: 2px 0 6px rgb(165, 165, 165);
-}
-
-body aside nav {
-    width: 100%;
-}
-
-body aside .current-user {
-    border-bottom: 1px solid rgb(211, 209, 209);
-    height: 220px;
-    position: relative;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+}
+
+body nav {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-}
-
-body aside .current-user h3,
-body aside .current-user h4 {
-    font-weight: 200;
-}
-
-body aside button {
-    position: absolute;
-    bottom: 0;
-    align-self: center;
-    padding: 0.8rem;
+    height: 100px;
+    color: rgb(22, 21, 21);
     background-color: white;
-    border: 1px solid rgb(8, 204, 211);
-    border-radius: 5px;
-    font-size: 0.8rem;
-    margin-bottom: 10px;
-}
-
-body aside button:hover {
-    background-color: rgb(8, 204, 211);
-    border: none;
-    color: white;
-}
-
-body aside button:active {
-    transform: scale(0.98);
-}
-
-body aside .current-user img {
-    width: 60px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 60px;
-    border-radius: 50%;
-}
-
-body aside nav {
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
-}
-
-body aside nav ul li {
-    padding: 10px;
-    list-style: none;
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
-    border-bottom: 1px solid rgb(202, 202, 202);
-    cursor: pointer;
-}
-
-body aside nav ul li.active {
-    background-color: rgba(182, 182, 182, 0.315);
-}
-body aside nav ul li a {
-    padding-left: 1.3rem;
-}
-
-body aside nav ul li:hover {
-    background-color: rgba(182, 182, 182, 0.315);
-}
-
-body aside nav ul li:hover a {
-    color: black;
-}
-
-/* Stylisation globale du block content */
-body #content {
-    flex-grow: 2;
-    padding: 1rem;
 }

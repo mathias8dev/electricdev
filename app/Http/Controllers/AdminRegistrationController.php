@@ -13,29 +13,33 @@ class AdminRegistrationController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        return view('admin.register');
     }
 
     public function register(Request $request)
     {
 
+
+        echo ($request->name);
+        echo ("  " . $request->firstname);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['requried', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
 
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'firstname' => $request->firstname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
-
         Auth::login($user);
 
-        return redirect(route('admin.home'));
+        return back()->with("user_created", true);
     }
 }
