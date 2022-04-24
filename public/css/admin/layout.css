@@ -1,0 +1,135 @@
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+nav {
+    width: 60px;
+    height: 100%;
+    transition: width 0.4s linear;
+    box-shadow: 2px 0 3px rgba(114, 114, 114, 0.226);
+    overflow-x: hidden;
+}
+
+nav h3 {
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+nav h3 i {
+    font-size: 1.5rem;
+}
+
+nav h3 li {
+    display: none;
+}
+
+nav ul li.submenu-holder {
+    cursor: pointer;
+}
+
+nav ul li.submenu-holder > span {
+    font-weight: bold;
+}
+
+nav ul li ul li {
+    color: #555;
+    margin-top: 0.1rem;
+}
+
+nav ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 0.6rem;
+}
+
+nav > ul li {
+    flex-direction: column;
+}
+
+nav ul li ul {
+    display: none;
+    padding-left: 2px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+nav ul li ul li:hover,
+nav > ul li.first:hover,
+nav > ul li.last:hover {
+    color: rgb(59, 59, 59, 0.4);
+    background-color: rgba(99, 141, 179, 0.4);
+}
+
+nav > ul li.last {
+    margin-bottom: 2rem;
+}
+
+nav ul li ul li.active,
+nav > ul li.active,
+nav > ul li.active {
+    background-color: rgba(99, 141, 179, 0.4);
+}
+
+nav ul li i {
+    font-size: 1.5rem;
+}
+
+nav ul li span {
+    display: none;
+}
+
+/* When expanded */
+nav.expanded {
+    width: 26rem;
+}
+
+nav.expanded h3 li {
+    margin: 1rem 2rem 0;
+    display: block;
+}
+
+nav.expanded h3 i {
+    font-size: 6rem;
+}
+
+nav.expanded ul li {
+    justify-content: center;
+    align-items: flex-start;
+}
+
+nav.expanded ul li ul {
+}
+
+nav.expanded ul li i {
+    width: 48px;
+    font-size: 1.5rem;
+}
+
+nav.expanded ul li span {
+    display: inline;
+}
+
+body #content {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+body #content td ul li {
+    list-style: none;
+}
+
+#content .illustration-container {
+    width: 100%;
+    height: 300px;
+    background-color: #888;
+}

@@ -1,45 +1,3 @@
-#content {
-}
-
-#content form {
-    width: 70%;
-    margin: auto;
-    margin-top: 50px;
-    padding: 40px 10px 10px 10px;
-    position: relative;
-    color: #555;
-    border-radius: 5px;
-    box-shadow: 0 0 5px gray;
-}
-
-#content form h3 {
-    color: black;
-}
-
-#content .form-control {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.form-control input {
-    width: 100%;
-    border-bottom: 1px solid gray;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-}
-
-.form-action {
-    margin-top: 1rem;
-}
-
-.form-action input {
-    border-radius: 5px;
-    color: white;
-    padding: 0.5rem;
-    width: 120px;
-    background-color: rgb(7, 7, 85);
-}
-
 .form-control .illustration-image {
     margin-top: 0.5rem;
     width: 100%;
@@ -66,7 +24,7 @@
     width: 100%;
     margin-top: 0.5rem;
     align-items: center;
-    border-bottom: 1px solid #555;
+    border-bottom: 1px solid black;
     transition: 0.5s;
 }
 
@@ -76,7 +34,7 @@
 }
 
 .file-field:hover span {
-    color: rgb(7, 7, 85);
+    color: rgb(18, 18, 153);
 }
 
 .file-field span {
@@ -96,6 +54,5 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     padding-right: 0.8rem;
-    border-bottom: unset;
     background-color: unset;
 }

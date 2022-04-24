@@ -13,7 +13,8 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
-    function statistics() {
+    function stats()
+    {
         return view('admin.stats');
     }
 }

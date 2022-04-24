@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminAuthenticatedSessionController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
+        if (Auth::check()) {
+            return redirect(route('admin.stats'));
+        }
         return view('admin.login');
     }
 
@@ -25,7 +28,7 @@ class AdminAuthenticatedSessionController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin.home'));
+            return redirect()->intended(route('admin.stats'));
         }
 
         return back()->withErrors([

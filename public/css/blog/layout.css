@@ -1,8 +1,16 @@
-header {
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 1rem 0;
     padding-left: 10%;
     padding-right: 10%;
@@ -10,32 +18,33 @@ header {
     position: sticky;
     top: 0;
     z-index: 2;
+    width: 100%;
 }
 
-header > h1 {
+body header > h1 {
     cursor: pointer;
 }
 
-header.shadow-display {
+body header.shadow-display {
     box-shadow: 2px 2px 2px rgb(199, 199, 199);
     background-color: white;
 }
 
-header h1.blog-name {
+body header h1.blog-name {
     font-size: 1.3rem;
     text-transform: uppercase;
     font-weight: 300;
 }
 
-header nav > ul {
+body header nav > ul {
     display: flex;
 }
 
-header nav li ul {
+body header nav li ul {
     display: none;
 }
 
-header nav li.submenu-container:hover ul {
+body header nav li.submenu-container:hover ul {
     display: block;
     position: absolute;
     background-color: white;
@@ -45,7 +54,7 @@ header nav li.submenu-container:hover ul {
     box-shadow: 0 3px 3px rgb(160, 160, 160);
 }
 
-header nav ul li {
+body header nav ul li {
     list-style: none;
     margin-right: 1.5rem;
     font-size: 0.8rem;
@@ -54,15 +63,28 @@ header nav ul li {
     font-weight: 700;
 }
 
-header nav ul li:last-child {
+body header nav ul li:last-child {
     margin-right: 0;
 }
 
-header nav ul li a {
+body header nav ul li a {
     color: hsl(0, 0%, 29%);
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
-header nav ul li a:hover {
+body header nav ul li a:hover {
     color: #8d8d8d;
+}
+
+#content {
+    height: 200px;
+    flex-grow: 3;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -19,63 +19,67 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 
-Route::get('/', function () {
-    // Get all articles
-    // Return the list to the view
+Route::middleware('ip.registration')->group(function () {
 
-    $articles = Article::all()->sortByDesc('created_at');
-    Log::error("Logging some data " . $articles);
-    return view('blog.home', ['articles' => $articles]);
-})->name('blog.home');
+    Route::get('/', function () {
+        // Get all articles
+        // Return the list to the view
 
-Route::get('/categorie/electronique', function () {
+        $articles = Article::all()->sortByDesc('created_at');
 
-    // Call the eloquent underlying model
-    $articles = Article::where('category_id', 1)->orderByDesc('created_at')->get();
-    // Get the list of all articles
-    // Return the articles
-    return view('blog.category', ['pageTitle' => "Articles de la catégorie électronique", 'articles' => $articles]);
-})->name('blog.category.electronic');
+        Log::error("Logging some data " . $articles);
+        return view('blog.home', ['articles' => $articles]);
+    })->name('blog.home');
 
-Route::get('/categorie/informatique', function () {
+    Route::get('/categorie/electronique', function () {
 
-    // Call the eloquent underlying model
-    // Get the list of all articles
-    // Return the articles
-    $articles = Article::where('category_id', 2)->orderByDesc('created_at')->get();
+        // Call the eloquent underlying model
+        $articles = Article::where('category_id', 1)->orderByDesc('created_at')->get();
+        // Get the list of all articles
+        // Return the articles
+        return view('blog.category', ['pageTitle' => "Articles de la catégorie électronique", 'articles' => $articles]);
+    })->name('blog.category.electronic');
 
-    return view('blog.category', ['pageTitle' => "Articles de la catégorie informatique", 'articles' => $articles]);
-})->name('blog.category.computer_science');
+    Route::get('/categorie/informatique', function () {
 
-Route::get('/categorie/programmation', function () {
+        // Call the eloquent underlying model
+        // Get the list of all articles
+        // Return the articles
+        $articles = Article::where('category_id', 2)->orderByDesc('created_at')->get();
 
-    // Call the eloquent underlying model
-    // Get the list of all articles
-    // Return the articles
-    $articles = Article::where('category_id', 3)->orderByDesc('created_at')->get();
+        return view('blog.category', ['pageTitle' => "Articles de la catégorie informatique", 'articles' => $articles]);
+    })->name('blog.category.computer_science');
 
-    return view('blog.category', ['pageTitle' => "Articles de la catégorie programmation", 'articles' => $articles]);
-})->name('blog.category.programming');
+    Route::get('/categorie/programmation', function () {
 
-Route::get('/categorie/{category}/{article:slug}', function ($_category, $_article) {
+        // Call the eloquent underlying model
+        // Get the list of all articles
+        // Return the articles
+        $articles = Article::where('category_id', 3)->orderByDesc('created_at')->get();
 
-    // Call the eloquent underlying model
-    $category = Category::where('name', ucfirst($_category))->first();
+        return view('blog.category', ['pageTitle' => "Articles de la catégorie programmation", 'articles' => $articles]);
+    })->name('blog.category.programming');
 
-    if (is_null($category)) {
-        abort(404);
-    }
-    $article_slug = $_article;
+    Route::get('/categorie/{category}/{article:slug}', function ($_category, $_article) {
 
-    $article = Article::where('slug', $article_slug)->where('category_id', $category->id)->first();
-    if (is_null($article)) {
-        abort(404);
-    }
-    // Get the article
-    // Return the article
-    return view('blog.article', ['pageTitle' => "ElectricDev | Article | " . $article->title, 'article' => $article]);
-})->name('blog.article.show');
+        // Call the eloquent underlying model
+        $category = Category::where('name', ucfirst($_category))->first();
 
-Route::get('/apropos', function () {
-    return view('blog.about');
-})->name('blog.about');
+        if (is_null($category)) {
+            abort(404);
+        }
+        $article_slug = $_article;
+
+        $article = Article::where('slug', $article_slug)->where('category_id', $category->id)->first();
+        if (is_null($article)) {
+            abort(404);
+        }
+        // Get the article
+        // Return the article
+        return view('blog.article', ['pageTitle' => "ElectricDev | Article | " . $article->title, 'article' => $article]);
+    })->name('blog.article.show');
+
+    Route::get('/apropos', function () {
+        return view('blog.about');
+    })->name('blog.about');
+});

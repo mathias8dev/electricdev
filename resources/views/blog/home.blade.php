@@ -2,8 +2,9 @@
 
 @section('pageTitle', "Page d'accueil")
 @section('headers')
-    <link rel="stylesheet" href="{{ asset('css/blog/article.list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/blog/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/blog/article.list.css') }}">
 @endsection
 @section('content')
-    @include('blog.include.articles')
+@include('blog.include.articles')
 @endsection

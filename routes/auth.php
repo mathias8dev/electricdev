@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAuthenticatedSessionController;
 use App\Http\Controllers\AdminRegistrationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 
 Route::domain('admin.localhost')->group(function () {
 

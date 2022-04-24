@@ -20,12 +20,11 @@
         <form action="{{ route('admin.login') }}" method="post">
             @csrf
 
-            <p>Veuillez saisir vos identifiants pour vous
-                connecter</p>
+            <p>Please enter your credentials to access the home.</p>
 
             <div class="form-control">
 
-                <label for="email">Nom d'utilisateur</label>
+                <label for="email">Username</label>
                 <input type="text" name="email" id="email" placeholder="mathias8dev@gmail.com">
 
                 @error('email')
@@ -36,7 +35,7 @@
 
             <div class="form-control">
 
-                <label for="password">Mot de passe</label>
+                <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="******">
             </div>
 

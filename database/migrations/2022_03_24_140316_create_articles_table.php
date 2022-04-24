@@ -15,10 +15,11 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->boolean('published')->default(false);
             $table->string('title');
+            $table->string('slug');
             $table->string('illustration_image');
             $table->string('content');
-            $table->integer('status');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')

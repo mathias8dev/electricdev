@@ -10,27 +10,27 @@
     width: 100%;
     margin: 0 1rem 2rem 0;
 }
-#content .form-control input {
+#content .form-control > input {
     width: 100%;
-    margin-top: 0.8rem;
+    margin-top: 0.3rem;
     background-color: #c4c4c4;
     padding-left: 0.5rem;
     height: 40px;
 }
 
-#content .form-control input[type="file"] {
+/* #content .form-control input[type="file"] {
     width: auto;
     border-bottom: 0;
     background-color: unset;
-}
+} */
 
 #content form .form-control select {
     width: 200px;
     background-color: #fefefe;
-    padding: 0.5rem;
+    padding: 0.2rem;
     font-size: 1rem;
     border-radius: 0.2rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 #content form .form-control textarea {
@@ -41,13 +41,25 @@
 }
 
 #content form .form-action input {
-    padding: 0.8rem;
+    padding: 0.5rem;
     border-radius: 0.2rem;
     width: 120px;
-    background-color: rgb(80, 80, 247);
+    background-color: rgb(7, 7, 161);
     color: white;
 }
 
 #content form .form-action input:focus {
     transform: scale(0.98);
+}
+
+
+.form-control #editorJS {
+    width: 100%;
+    height: 200px;
+    background-color: #c4c4c4;
+}
+
+label {
+    font-weight: 600;
+    font-size: 1.2rem;
 }
