@@ -24,13 +24,20 @@
                 <li><a href="/">Accueil</a></li>
                 <li class="submenu-container"><a href="/">Catégories</a>
                     <ul>
-                        <li><a href="{{ route('blog.category.electronic') }}">Electronique</a></li>
+
+                        @foreach ($categories as $category)
+                            <li><a
+                                    href="{{ route('blog.category', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
+
+                        {{-- <li><a href="{{ route('blog.category.electronic') }}">Electronique</a></li>
                         <li><a href="{{ route('blog.category.computer_science') }}">Informatique</a></li>
-                        <li><a href="{{ route('blog.category.programming') }}">Programmation</a></li>
+                        <li><a href="{{ route('blog.category.programming') }}">Programmation</a></li> --}}
                     </ul>
                 </li>
                 <li><a href="/apropos">A propos</a></li>
-                    
+
             </ul>
         </nav>
     </header>
@@ -48,7 +55,7 @@
     </footer>
 
     @section('js')
-    <script src="{{ asset('js/blog/menu.js') }}"></script>
+        <script src="{{ asset('js/blog/menu.js') }}"></script>
     @show
 </body>
 

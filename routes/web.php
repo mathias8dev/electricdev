@@ -4,6 +4,8 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,57 +28,69 @@ Route::middleware('ip.registration')->group(function () {
         // Return the list to the view
 
         $articles = Article::all()->sortByDesc('created_at');
+        $categories = Category::all();
 
-        Log::error("Logging some data " . $articles);
-        return view('blog.home', ['articles' => $articles]);
+        if ($categories->count() === 0) {
+            return view('blog.setup-first');
+        }
+
+        return view('blog.home', ['articles' => $articles, 'categories' => $categories]);
     })->name('blog.home');
 
-    Route::get('/categorie/electronique', function () {
+    Route::get('/categorie/{category:slug}', function (Category $category) {
+        $articles = $category->articles;
+        $pageTitle = "Articles de la catégorie " . Str::lower($category->name);
+        $categories = Category::all();
 
-        // Call the eloquent underlying model
-        $articles = Article::where('category_id', 1)->orderByDesc('created_at')->get();
-        // Get the list of all articles
-        // Return the articles
-        return view('blog.category', ['pageTitle' => "Articles de la catégorie électronique", 'articles' => $articles]);
-    })->name('blog.category.electronic');
+        return view('blog.category',  ['pageTitle' => $pageTitle, 'articles' => $articles, 'categories' => $categories]);
+    })->name('blog.category');
+    // Route::get('/categorie/electronique', function () {
 
-    Route::get('/categorie/informatique', function () {
+    //     // Call the eloquent underlying model
+    //     $articles = Article::where('category_id', 1)->orderByDesc('created_at')->get();
+    //     // Get the list of all articles
+    //     // Return the articles
+    //     return view('blog.category', ['pageTitle' => "Articles de la catégorie électronique", 'articles' => $articles]);
+    // })->name('blog.category.electronic');
 
-        // Call the eloquent underlying model
-        // Get the list of all articles
-        // Return the articles
-        $articles = Article::where('category_id', 2)->orderByDesc('created_at')->get();
+    // Route::get('/categorie/informatique', function () {
 
-        return view('blog.category', ['pageTitle' => "Articles de la catégorie informatique", 'articles' => $articles]);
-    })->name('blog.category.computer_science');
+    //     // Call the eloquent underlying model
+    //     // Get the list of all articles
+    //     // Return the articles
+    //     $articles = Article::where('category_id', 2)->orderByDesc('created_at')->get();
 
-    Route::get('/categorie/programmation', function () {
+    //     return view('blog.category', ['pageTitle' => "Articles de la catégorie informatique", 'articles' => $articles]);
+    // })->name('blog.category.computer_science');
 
-        // Call the eloquent underlying model
-        // Get the list of all articles
-        // Return the articles
-        $articles = Article::where('category_id', 3)->orderByDesc('created_at')->get();
+    // Route::get('/categorie/programmation', function () {
 
-        return view('blog.category', ['pageTitle' => "Articles de la catégorie programmation", 'articles' => $articles]);
-    })->name('blog.category.programming');
+    //     // Call the eloquent underlying model
+    //     // Get the list of all articles
+    //     // Return the articles
+    //     $articles = Article::where('category_id', 3)->orderByDesc('created_at')->get();
 
-    Route::get('/categorie/{category}/{article:slug}', function ($_category, $_article) {
+    //     return view('blog.category', ['pageTitle' => "Articles de la catégorie programmation", 'articles' => $articles]);
+    // })->name('blog.category.programming');
 
-        // Call the eloquent underlying model
-        $category = Category::where('name', ucfirst($_category))->first();
+    Route::get('/categorie/{category:slug}/{article:slug}', function (Category $category, Article $article) {
 
-        if (is_null($category)) {
-            abort(404);
-        }
-        $article_slug = $_article;
+        // // Call the eloquent underlying model
+        // $category = Category::where('name', ucfirst($_category))->first();
 
-        $article = Article::where('slug', $article_slug)->where('category_id', $category->id)->first();
-        if (is_null($article)) {
-            abort(404);
-        }
+        // if (is_null($category)) {
+        //     abort(404);
+        // }
+        // $article_slug = $_article;
+
+        // $article = Article::where('slug', $article_slug)->where('category_id', $category->id)->first();
+        // if (is_null($article)) {
+        //     abort(404);
+        // }
         // Get the article
         // Return the article
-        return view('blog.article', ['pageTitle' => "ElectricDev | Article | " . $article->title, 'article' => $article]);
+        $categories = Category::all();
+        return view('blog.article', ['pageTitle' => "Article | " . $article->title, 'article' => $article, 'categories' => $categories]);
     })->name('blog.article.show');
 
     Route::get('/apropos', function () {

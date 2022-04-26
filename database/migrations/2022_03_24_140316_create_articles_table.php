@@ -19,7 +19,8 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('illustration_image');
-            $table->string('content');
+            $table->string('illustration_download_url');
+            $table->longText('content');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')

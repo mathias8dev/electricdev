@@ -17,8 +17,10 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->boolean("published")->default(false);
             $table->string('name');
+            $table->string('slug');
             $table->string('description');
             $table->string('illustration_image');
+            $table->string('illustration_download_url');
             $table->timestamps();
         });
     }

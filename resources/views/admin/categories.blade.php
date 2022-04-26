@@ -8,6 +8,10 @@
 @endsection
 @section('content')
 
+@if (count($categories) === 0)
+<h3>No category exists</h3>
+<div><a href="{{route('admin.categories.new')}}">Click here to create a new ones</a></div>
+@else
 <table>
     <thead>
         <tr>
@@ -46,6 +50,16 @@
 
     </tbody>
 </table>
+@endif
+
+@if (request()->session()->has('message'))
+<div class="snackbar">
+    {{session('message')}}
+</div>
+<script src="{{ asset('js/utilities.js') }}"></script>
+@endif
+
+
 
 @if($message ?? '')
 <div class="snackbar">

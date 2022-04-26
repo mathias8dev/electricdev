@@ -1,3 +1,27 @@
+#content form .form-control select {
+    width: 200px;
+    background-color: #fefefe;
+    padding: 0.2rem;
+    font-size: 1rem;
+    border-radius: 0.2rem;
+    margin-top: 0.5rem;
+}
+
+#content form .form-action input {
+    padding: 8px;
+    width: 100px;
+    background-color: unset;
+    border: 1px solid #555;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+#content form .form-action input:hover {
+    border: unset;
+    background-color: rgba(28, 28, 224, 0.747);
+    color: white;
+}
 table {
     border-collapse: collapse;
 }
@@ -73,4 +97,25 @@ table tbody tr:nth-of-type(2n) {
 
 table tbody tr td {
     color: inherit;
+}
+
+h3 {
+    margin-top: 20px;
+}
+div a {
+    text-decoration: underline;
+    color: blue !important;
+}
+
+td ul li .fa-solid {
+    color: #555;
+    transition: 0.5s;
+}
+
+td ul li .fa-solid:active {
+    transform: scale(0.98);
+}
+
+td ul li .fa-solid:hover {
+    color: blue;
 }

@@ -105,7 +105,14 @@ nav.expanded ul li {
     align-items: flex-start;
 }
 
-nav.expanded ul li ul {
+nav.expanded ul li ul li {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+nav.expanded ul li ul li i {
+    font-size: 1rem;
+    text-align: center;
 }
 
 nav.expanded ul li i {

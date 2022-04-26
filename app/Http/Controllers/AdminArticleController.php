@@ -6,7 +6,9 @@ use App\Models\Article;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class AdminArticleController extends Controller
 {
@@ -49,14 +51,19 @@ class AdminArticleController extends Controller
     function articleNew()
     {
         $article = new Article;
-        // $article->category = Category::findOrFail(1);
+        if (count(Category::all()) === 0) {
+            return view('admin.create-category-first');
+        }
+
+        $article->category = Category::all()->get(0);
         return view('admin.new-article', ["article" => $article, "categories" => Category::all(), "edit" => false]);
     }
 
     function articleActionRemove(Article $article)
     {
+        Storage::disk('public')->delete($article->illustration_image);
         $article->delete();
-        return redirect(route('admin.articles.list', ['articles' => Article::all(), 'message' => "Article removed successfully"]));
+        return back()->with(['message' => "Article removed successfully"]);;
     }
 
     function articleActionPublish(Article $article)
@@ -64,7 +71,7 @@ class AdminArticleController extends Controller
         $article->published = true;
         $article->save();
         $articles = Article::all();
-        return redirect(route('admin.articles.list', ['articles' => $articles, 'message' => "Article published"]));
+        return back()->with(['message' => "Article published."]);
     }
 
     function articleActionUnPublish(Article $article)
@@ -72,12 +79,12 @@ class AdminArticleController extends Controller
         $article->published = false;
         $article->save();
         $articles = Article::all();
-        return redirect(route('admin.articles.list', ['articles' => $articles, 'message' => "Article set to unpublished"]));
+        return back()->with(['message' => "Article unpublished"]);;
     }
 
     function articleActionEdit(Article $article)
     {
-        return redirect(route('admin.articles.new', ["article" => $article, "categories" => Category::all(), "edit" => true]));
+        return view('admin.new-article', ["article" => $article, "categories" => Category::all(), "edit" => true]);
     }
 
 
@@ -103,13 +110,22 @@ class AdminArticleController extends Controller
         # Getting the selected category of the user
         $category = Category::findOrFail(+ ($request->category_id));
         # Storing the illustration image
-        $illustrationImage = $request->illustration_image->store('images');
+        $illustrationImage = $request->illustration_image->store('images/articles', 'public');
 
         # Saving data into the article object
         $article->title = $request->title;
+
+        $article->slug = Str::slug($request->title, '-');
         $article->content = $request->content;
+
+        // if($request->action == "edit") {
+        //     if ($request->hasFile('illustration_image')) {
+
+        //     }
+        // }
         $article->illustration_image = $illustrationImage;
-        $article->category = $category;
+        $article->illustration_download_url = env('APP_URL') . '/storage/' . $illustrationImage;
+        $article->category_id = $category->id;
 
         $article->save();
 

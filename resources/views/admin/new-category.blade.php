@@ -22,7 +22,7 @@
 
     <div class="form-control">
         <label for="name">Name of the category</label><br>
-        <input type="text" name="name" placeholder="Electronic">
+        <input type="text" name="name" value="{{old('name', $category->name)}}" placeholder="Electronic">
     </div>
 
     <div class="form-control">
@@ -44,7 +44,7 @@
 
     <div class="form-control">
         <label for="description">Description</label><br>
-        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="description" value="{{old('description', $category->description)}}" placeholder="Description">
     </div>
 
     <div class="form-action">
@@ -55,7 +55,7 @@
 
 @if (session('saved'))
 <div class="snackbar">
-    Article saved successully
+    Category created successully
 </div>
 <script src="{{ asset('js/utilities.js') }}"></script>
 @endif

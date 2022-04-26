@@ -9,13 +9,14 @@
 
 @section('content')
 
+
 <h3>Categories list</h3>
 <form action="{{route('admin.articles.ation.filter')}}" method="POST" class="form">
     @csrf
     {{-- <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
-        @endforeach
+    @endforeach
     </ul> --}}
 
     <div class="form-control">
@@ -40,6 +41,10 @@
     </div>
 </form>
 
+@if (count($articles) === 0)
+<h3>No article created.</h3>
+<div> <a href="{{route('admin.articles.new')}}">click here to create one</a></div>
+@else
 <table>
     <thead>
         <tr>
@@ -77,12 +82,21 @@
 
     </tbody>
 </table>
+@endif
+
 
 @if ($message ?? '')
 <div class="snackbar">
     {{ $message ?? '' }}
 </div>
 
+<script src="{{ asset('js/utilities.js') }}"></script>
+@endif
+
+@if (request()->session()->has('message'))
+<div class="snackbar">
+    {{session('message')}}
+</div>
 <script src="{{ asset('js/utilities.js') }}"></script>
 @endif
 @endsection

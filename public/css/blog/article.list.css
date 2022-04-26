@@ -31,12 +31,12 @@
     color: #777676;
 }
 
-.articles .article-wrap .illustration {
+.articles .article-wrap .article-illustration {
     width: 100%;
     height: calc(80vw / 3 - 7rem);
 }
 
-.articles .article-wrap .illustration img {
+.articles .article-wrap .article-illustration img {
     width: 100%;
     height: 100%;
     background-position: center;

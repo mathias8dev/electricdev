@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class AdminCategoryController extends Controller
 {
@@ -12,41 +15,46 @@ class AdminCategoryController extends Controller
 
     function categoriesList()
     {
-        return view('admin.categories', ["categories" => Category::all()]);
+        $categories = Category::all();
+        if (count($categories) === 0)
+            return view('admin.create-category-first');
+        return view('admin.categories', ["categories" => $categories]);
     }
 
 
     function categoryNew()
     {
         $category = new Category;
-        return view('admin.new-category', ["edit" => false]);
+        return view('admin.new-category', ["category" => $category, "edit" => false]);
     }
 
     function categoryActionRemove(Category $category)
     {
+        Storage::disk('public')->delete($category->illustration_image);
         $category->delete();
-        return redirect(route('admin.categories.list', ['categories' => category::all(), 'message' => "category removed successfully"]));
+        return back()->with(['message' => "category removed successfully"]);
     }
 
     function categoryActionPublish(Category $category)
     {
-        $category->published = true;
+        $category->published = !$category->published;
+        $message = $category->published === true ? "Category published." : "Category unpublished";
         $category->save();
         $categories = Category::all();
-        return redirect(route('admin.categories.list', ['categories' => $categories, 'message' => "category published"]));
+        return back()->with(['message' => $message]);
     }
 
     function categoryActionUnPublish(Category $category)
     {
         $category->published = false;
         $category->save();
-        $categories = Category::all();
-        return redirect(route('admin.categories.list', ['categories' => $categories, 'message' => "category set to unpublished"]));
+        return back()->with(['message' => "category set to unpublished"]);
     }
 
     function categoryActionEdit(Category $category)
     {
-        return redirect(route('admin.categories.new', ["category" => $category, "edit" => true]));
+
+        return view('admin.new-category', ["category" => $category, "edit" => true]);
     }
 
 
@@ -63,22 +71,23 @@ class AdminCategoryController extends Controller
         ]);
 
         $category = new Category;
-        
+
         if ($request->action == "edit") {
             $category = Category::findOrFail($request->category_id);
         }
 
-        
+
 
 
         # Storing the illustration image
-        $illustrationImage = $request->illustration_image->store('images');
+        $illustrationImage = $request->illustration_image->store('images/categories', 'public');
 
         # Saving data into the category object
         $category->name = $request->name;
+        $category->slug = Str::slug($request->name, '-');
         $category->description = $request->description;
         $category->illustration_image = $illustrationImage;
-
+        $category->illustration_download_url = env("APP_URL") . '/storage/' . $illustrationImage;
         $category->save();
 
         $request->flash();
